@@ -1,4 +1,6 @@
 import { useState } from "react"
+import TaskList from "./TaskList"
+import { v4 as uuidv4 } from 'uuid'
 
 export default function TaskForm() {
     const emptyForm = {task: "", priority: false,}
@@ -18,6 +20,7 @@ export default function TaskForm() {
         event.preventDefault()
         console.log(formData)
         if (formData.task.length > 3) {
+            formData.uuid = uuidv4()
             setTasks(prev =>
             [formData, ...prev])
             setFormData(emptyForm)
@@ -25,11 +28,13 @@ export default function TaskForm() {
         }
     }
 
+    const removeTask = (uuid) => {
+        console.log(uuid)
+        setTasks(prev => prev.filter(item => item.uuid !== uuid))
+    }
+
     return (
         <>
-        <ul>
-            {tasks.map((item, index) => <li key={index}>{item.task}</li>)}
-        </ul>
             <form onSubmit={handleFormSubmit}>
                 <div className="row mb-3">
                     <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Task</label>
@@ -57,8 +62,10 @@ export default function TaskForm() {
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
             </form>
+            <br />
+            <TaskList tasks={tasks} removeTask={removeTask} />
         </>
     )
 }
