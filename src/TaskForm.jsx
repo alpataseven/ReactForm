@@ -33,6 +33,10 @@ export default function TaskForm() {
         setTasks(prev => prev.filter(item => item.uuid !== uuid))
     }
 
+    const editTask = (uuid) => {
+        console.log(uuid)
+    }
+
     return (
         <>
             <form onSubmit={handleFormSubmit}>
@@ -65,7 +69,7 @@ export default function TaskForm() {
                 <button type="submit" class="btn btn-outline-primary">Submit</button>
             </form>
             <br />
-            <TaskList tasks={tasks} removeTask={removeTask} />
+            <TaskList tasks={tasks} removeTask={removeTask} editTask={editTask} />
         </>
     )
 }
