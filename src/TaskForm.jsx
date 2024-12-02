@@ -18,7 +18,6 @@ export default function TaskForm() {
     
     const handleFormSubmit = (event) => {
         event.preventDefault()
-        console.log(formData)
         if (formData.task.length > 3) {
             formData.uuid = uuidv4()
             setTasks(prev =>
@@ -29,24 +28,26 @@ export default function TaskForm() {
     }
 
     const removeTask = (uuid) => {
-        console.log(uuid)
         setTasks(prev => prev.filter(item => item.uuid !== uuid))
     }
 
     const editTask = (uuid) => {
         console.log(uuid)
+        const task = tasks.find(item => item.uuid === uuid)
+        setFormData(task)
     }
 
     return (
         <>
             <form onSubmit={handleFormSubmit}>
                 <div className="row mb-3">
-                    <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Task</label>
+                    <label htmlFor="task" className="col-sm-2 col-form-label">Task</label>
                     <div className="col-sm-10">
                         <input 
                         type="text" 
-                        className="form-control" 
-                        id="inputEmail3" 
+                        className="form-control"
+                        value={formData.task} 
+                        id="task" 
                         name="task" 
                         onChange={handleInputChange} />
                     </div>
@@ -56,7 +57,8 @@ export default function TaskForm() {
                         <div className="form-check">
                             <input 
                             className="form-check-input" 
-                            type="checkbox" 
+                            type="checkbox"
+                            checked={formData.priority} 
                             id="priority" 
                             name="priority" 
                             onChange={handleInputChange} />
