@@ -34,7 +34,7 @@ export default function TaskForm() {
     const editTask = (uuid) => {
         console.log(uuid)
         const task = tasks.find(item => item.uuid === uuid)
-        setFormData(task)
+        setFormData({...task, isEdited: true})
     }
 
     return (
