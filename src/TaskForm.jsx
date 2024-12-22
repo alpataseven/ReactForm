@@ -7,6 +7,9 @@ export default function TaskForm() {
     const [formData, setFormData] = useState({ emptyForm })
     const [tasks, setTasks] = useState([])
 
+    const date = new Date();
+    const currentDate = date.toLocaleDateString()
+
     const handleInputChange = (event) => {
         setFormData(prev => {
             return {
@@ -47,8 +50,10 @@ export default function TaskForm() {
     return (
         <>
             <form onSubmit={handleFormSubmit}>
+            <h3 className="text-center mb-5">Görev Listem</h3>
+            <h5 className="text-end mb-5">Tarih: {currentDate}</h5>
                 <div className="row mb-3">
-                    <label htmlFor="task" className="col-sm-2 col-form-label">Task</label>
+                    <label htmlFor="task" className="col-sm-2 col-form-label fw-bold">Görev Gir:</label>
                     <div className="col-sm-10">
                         <input
                             type="text"
@@ -70,12 +75,12 @@ export default function TaskForm() {
                                 name="priority"
                                 onChange={handleInputChange} />
                             <label className="form-check-label" htmlFor="priority">
-                                Oncelikli
+                                Öncelikli Görev
                             </label>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-primary">Submit</button>
+                <button type="submit" class="btn btn-outline-primary">Oluştur</button>
             </form>
             <br />
             <TaskList tasks={tasks} removeTask={removeTask} editTask={editTask} />

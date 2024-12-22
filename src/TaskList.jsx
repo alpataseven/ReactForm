@@ -1,13 +1,34 @@
+import { useEffect, useState } from "react"
+
 export default function TaskList({ tasks, removeTask, editTask }) {
+
+    const [priority, setPriority] = useState(false)
+    const [filteredTasks, setfilteredTasks] = useState(tasks)
+
+    const handlePriorityFilter = () => {
+        setPriority(prev => !prev)
+        console.log("priority", priority)
+    }
+
+    useEffect(() => {
+        setfilteredTasks(tasks)
+    }, [tasks])
+
+    useEffect(() => {
+        priority ? setfilteredTasks(tasks.filter(item => item.priority === priority)) : setfilteredTasks(tasks)
+    }, [priority])
+
     if (tasks.length === 0) {
         return <></>
     }
 
     return (
         <div className="p-3 bg-light mb-5 border rounded">
-            <p className="lead fw-bold text-start">Görevler:</p>
+            <p className="lead fw-bold text-start">{priority ? "Öncelikli Görevler" : "Görevler"}
+                <span onClick={handlePriorityFilter}
+                    className={`btn btn-sm ${priority ? "btn-outline-info" : "btn-outline-warning"} float-end`}>{priority ? "Bütün Görevleri Göster" : "Öncelikli Görevleri Göster"}</span></p>
             <ul className="list-group">
-                {tasks.map(
+                {filteredTasks.map(
                     (item) =>
                         <li className="list-group-item" key={item.uuid}>{item.task}
                             {item.priority && <span className="badge rounded-pill text-bg-primary mx-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
