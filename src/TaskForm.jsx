@@ -42,16 +42,25 @@ export default function TaskForm() {
     }
 
     const editTask = (uuid) => {
-        console.log(uuid)
         const task = tasks.find(item => item.uuid === uuid)
         setFormData({ ...task, isEdited: true })
+    }
+
+    const doneTask = (uuid) => {
+        const taskIndex = tasks.findIndex(item => item.uuid === uuid)
+        const task = tasks[taskIndex]
+        task.isDone = !task.isDone
+        const newTasks = tasks.slice()
+        newTasks[taskIndex] = task
+        setTasks(newTasks)
+        console.log(newTasks)
     }
 
     return (
         <>
             <form onSubmit={handleFormSubmit}>
-            <h3 className="text-center mb-5">Görev Listem</h3>
-            <h5 className="text-end mb-5">Tarih: {currentDate}</h5>
+                <h3 className="text-center mb-5">Görev Listem</h3>
+                <h5 className="text-end mb-5">Tarih: {currentDate}</h5>
                 <div className="row mb-3">
                     <label htmlFor="task" className="col-sm-2 col-form-label fw-bold">Görev Gir:</label>
                     <div className="col-sm-10">
@@ -83,7 +92,7 @@ export default function TaskForm() {
                 <button type="submit" class="btn btn-outline-primary">Oluştur</button>
             </form>
             <br />
-            <TaskList tasks={tasks} removeTask={removeTask} editTask={editTask} />
+            <TaskList tasks={tasks} removeTask={removeTask} editTask={editTask} doneTask={doneTask} />
         </>
     )
 }
