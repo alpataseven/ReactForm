@@ -76,7 +76,8 @@ export default function TaskForm() {
     return (
         <>
             <form onSubmit={handleFormSubmit}>
-                <h3 className="text-center mb-5">Görev Listem</h3>
+                <h3 className="text-center mb-3">Görev Listem</h3>
+                <hr />
                 <h5 className="text-end mb-5">Tarih: {currentDate}</h5>
                 <div className="row mb-3">
                     <label htmlFor="task" className="col-sm-2 col-form-label fw-bold">Görev Gir:</label>
@@ -106,7 +107,9 @@ export default function TaskForm() {
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-primary">Oluştur</button>
+                <div className="d-grid gap-2">
+                    <button type="submit" class="btn btn-outline-primary">Oluştur</button>
+                </div>
             </form>
             <br />
             <TaskList tasks={tasks} removeTask={removeTask} editTask={editTask} doneTask={doneTask} />
