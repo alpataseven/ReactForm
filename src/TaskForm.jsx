@@ -1,11 +1,25 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import TaskList from "./TaskList"
 import { v4 as uuidv4 } from 'uuid'
 
 export default function TaskForm() {
     const emptyForm = { task: "", priority: false, }
-    const [formData, setFormData] = useState({ emptyForm })
+    const [formData, setFormData] = useState(emptyForm)
     const [tasks, setTasks] = useState([])
+    const [taskChangeCount, setTaskChangeCount] = useState(0)
+
+    //Sayfa ilk açıldığında
+    useEffect(() => {
+        const localStorageTasks = JSON.parse(localStorage.getItem("tasks"))
+        setTasks(localStorageTasks ?? [])
+    }, [])
+
+    //Tasks bilgisi değişince
+    useEffect(() => {
+        if (taskChangeCount > 0) {
+            localStorage.setItem("tasks", JSON.stringify(tasks))
+        }
+    }, [taskChangeCount])
 
     const date = new Date();
     const currentDate = date.toLocaleDateString()
@@ -33,17 +47,20 @@ export default function TaskForm() {
                 [formData, ...prev])
 
         }
+        setTaskChangeCount(prev => prev + 1)
         setFormData(emptyForm)
         event.target.reset()
     }
 
     const removeTask = (uuid) => {
         setTasks(prev => prev.filter(item => item.uuid !== uuid))
+        setTaskChangeCount(prev => prev + 1)
     }
 
     const editTask = (uuid) => {
         const task = tasks.find(item => item.uuid === uuid)
         setFormData({ ...task, isEdited: true })
+        setTaskChangeCount(prev => prev + 1)
     }
 
     const doneTask = (uuid) => {
@@ -53,7 +70,7 @@ export default function TaskForm() {
         const newTasks = tasks.slice()
         newTasks[taskIndex] = task
         setTasks(newTasks)
-        console.log(newTasks)
+        setTaskChangeCount(prev => prev + 1)
     }
 
     return (
