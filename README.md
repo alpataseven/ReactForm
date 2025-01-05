@@ -1,1 +1,1 @@
-Alperen
+<h1 class="text-center">Alperen</h1>
