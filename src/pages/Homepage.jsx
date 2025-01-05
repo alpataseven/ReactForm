@@ -10,13 +10,19 @@ export default function Homepage() {
         animationSpeed={3}
         showBorder={false}
       >
-        <h1 className="text-style">Görev Listesi</h1>
+        <h1 className="text-style">Hadi Başla</h1>
       </GradientText>
 
-      <div className="mt-3" id="homepage-btn">
+      <h2 className="second-title-style mt-3">Hedeflerinizi Kolayca Yönetin!</h2>
+      <br />
+      <h4 className="second-title-style mt-3">Hedeflerinizi gerçekleştirmek için ilk adımı atın: Bugün başlayın! 🚀</h4>
+
+
+
+      <div className="mt-5" id="homepage-btn">
         <StyledWrapper>
           <NavLink to="/list">
-            <span className="text">Get Started!</span>
+            <span className="text">Başlayalım!</span>
           </NavLink>
         </StyledWrapper>
       </div>

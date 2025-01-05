@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import TaskList from "./TaskList"
 import { v4 as uuidv4 } from 'uuid'
+import FormButton from "./Components/FormButton"
+import GradientText from "./Components/GradientText"
 
 export default function TaskForm() {
     const emptyForm = { task: "", priority: false, }
@@ -76,19 +78,31 @@ export default function TaskForm() {
     return (
         <>
             <form onSubmit={handleFormSubmit}>
-                <h3 className="text-center mb-3">Görev Listem</h3>
+                <GradientText
+                        colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                        animationSpeed={3}
+                        showBorder={false}
+                      >
+                        <h3 className="">Görev Listem:</h3>
+                      </GradientText>
                 <hr />
+                
                 <h5 className="text-end mb-5">Tarih: {currentDate}</h5>
                 <div className="row mb-3">
                     <label htmlFor="task" className="col-sm-2 col-form-label fw-bold">Görev Gir:</label>
                     <div className="col-sm-10">
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={formData.task}
-                            id="task"
-                            name="task"
-                            onChange={handleInputChange} />
+                        <div className="form-floating">
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="lorem ipsum"
+                                value={formData.task}
+                                id="task"
+                                name="task"
+                                onChange={handleInputChange} />
+                            <label for="floatingInput">Örn: JavaScript</label>
+                        </div>
+
                     </div>
                 </div>
                 <div className="row mb-3">
@@ -108,7 +122,7 @@ export default function TaskForm() {
                     </div>
                 </div>
                 <div className="d-grid gap-2">
-                    <button type="submit" class="btn btn-outline-primary">Oluştur</button>
+                    <FormButton />
                 </div>
             </form>
             <br />
