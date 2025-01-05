@@ -29,7 +29,7 @@ Projenin Görev Listesi sayfası
 Projenin Görev Listesi sayfası (Öncelikli Görevler)
 
 ### Video
-[![Videoyu İzle](Homepage.png)](project-video.mp4)
+[![Videoyu İzle]](project-video.mp4)
 _Projeyi açıklayan videoyu buradan izleyebilirsiniz._
 
 ## Kurulum
