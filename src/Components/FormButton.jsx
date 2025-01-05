@@ -5,7 +5,7 @@ const FormButton = () => {
   return (
     <StyledWrapper>
       <button type='submit' className="button">
-        Button
+        Oluştur
       </button>
     </StyledWrapper>
   );
