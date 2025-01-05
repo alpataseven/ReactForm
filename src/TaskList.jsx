@@ -30,7 +30,7 @@ export default function TaskList({ tasks, removeTask, editTask, doneTask }) {
                     className={`btn btn-sm ${priority ? "btn-outline-info" : "btn-outline-warning"} float-end`}>{priority ? "Bütün Görevleri Göster" : "Öncelikli Görevleri Göster"}
                 </button>
                 </div></p>
-            <ul className="list-group">
+            <ul className="list-group list-group-flush">
                 {filteredTasks.map(
                     (item) =>
                     <TaskListItem 
