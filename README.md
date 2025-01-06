@@ -22,14 +22,14 @@ React js ile oluşturduğum bir to do website projesi
 ![Ana Sayfa](Homepage.png)
 Projenin Ana sayfa ekranı
 
-![Görev Lİstesi](Gorev-listesi.png)
+![Görev Listesi](Gorev-listesi.png)
 Projenin Görev Listesi sayfası
 
-![Görev Lİstesi (Öncelikli Görevler)](Oncelikli-gorev-listesi.png)
+![Görev Listesi (Öncelikli Görevler)](Oncelikli-gorev-listesi.png)
 Projenin Görev Listesi sayfası (Öncelikli Görevler)
 
 ### Video
-[![Videoyu İzle]](project-video.mp4)
+[![Videoyu İzle](Homepage.png)](project-video.mp4)
 _Projeyi açıklayan videoyu buradan izleyebilirsiniz._
 
 ## Kurulum
